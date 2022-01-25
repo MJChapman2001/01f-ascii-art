@@ -21,7 +21,7 @@ func FileInit(banner string) map[int]string {
 		temp := ""
 
 		for j < k {
-			temp += lines[j] + "\n"
+			temp += lines[j+1] + "\n"
 			j++
 		}
 
