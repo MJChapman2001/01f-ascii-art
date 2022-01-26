@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"ascii-art/Functions"
@@ -13,6 +14,8 @@ func main() {
 		word := args[0]
 		chars := functions.FileInit("Banners/standard.txt")
 
-		functions.Transform(word, chars)
+		result := functions.Transform(word, chars)
+
+		fmt.Print(result)
 	}
 }

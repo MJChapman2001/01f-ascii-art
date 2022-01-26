@@ -2,16 +2,21 @@ package functions
 
 import (
 	"strings"
-	"fmt"
 )
 
-func Transform(word string, chars map[int]string) {
+func Transform(word string, chars map[int]string) string {
 	var result string
 
 	var splitNewLine []string
 
+	if word == "\\n" {
+		return "\n"
+	} else if len(word) == 0 {
+		return ""
+	}
+
 	for x, y := 0, 0; x < len(word); x++ {
-		if x+1 < len(word)-1 {
+		if x+1 <= len(word)-1 {
 			if word[x] == '\\' && word[x+1] == 'n' {
 				splitNewLine = append(splitNewLine, word[y:x])
 				y = x+2
@@ -37,5 +42,5 @@ func Transform(word string, chars map[int]string) {
 		}
 	}
 
-	fmt.Print(result)
+	return result
 }
