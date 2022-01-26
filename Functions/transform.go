@@ -9,10 +9,12 @@ func Transform(word string, chars map[int]string) string {
 
 	var splitNewLine []string
 
+	if len(word) == 0 {
+		return ""
+	}
+
 	if word == "\\n" {
 		return "\n"
-	} else if len(word) == 0 {
-		return ""
 	}
 
 	for x, y := 0, 0; x < len(word); x++ {
