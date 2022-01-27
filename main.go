@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strings"
 
 	"ascii-art/Functions"
 )
@@ -36,6 +37,7 @@ func main() {
 	}
 	*/
 
+	/* fs
 	message := "Usage: go run . [STRING] [BANNER]\n\nEX: go run . something standard"
 
 	if len(args) == 2 {
@@ -44,12 +46,39 @@ func main() {
 
 		chars, err := CheckBanner(banner)
 		if err != nil {
-			fmt.Print(message)
+			fmt.Println(message)
 			panic(err)
 		}
 
 		result := functions.Transform(word, chars)
 
 		fmt.Print(result)
+	}
+	*/
+
+	message := "Usage: go run . [STRING] [BANNER] [OPTION]\n\nEX: go run . something standard --output=<fileName.txt>"
+
+	if len(args) == 3 {
+		word := args[0]
+		banner := args[1]
+		output := args[2]
+
+		chars, err := CheckBanner(banner)
+		if err != nil {
+			fmt.Println(message)
+			panic(err)
+		}
+
+		prefix := "--output="
+
+		if strings.HasPrefix(output, prefix) {
+			fileName := strings.TrimPrefix(output, prefix)
+			
+			result := functions.Transform(word, chars)
+
+			os.WriteFile(fileName, []byte(result), 0666)
+		} else {
+			fmt.Println(message)
+		}
 	}
 }
